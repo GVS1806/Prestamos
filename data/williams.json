@@ -1,0 +1,18 @@
+{
+  "v": 1,
+  "key": "williams",
+  "name": "Williams Duarte",
+  "disburseLabel": "1 y 9 jun 2026",
+  "principal": 4000,
+  "fee": 80,
+  "received": 3920,
+  "disbursements": [
+    { "date": "2026-06-01", "amount": 1960, "note": "1a parte (neto del capital 4000 tras fee 2%)" },
+    { "date": "2026-06-09", "amount": 1960, "note": "2a parte" }
+  ],
+  "plan": "periodic",
+  "payments": [
+    { "date": "2026-07-13", "amount": 734 },
+    { "date": "2026-08-08", "amount": 734 }
+  ]
+}
