@@ -1,0 +1,15 @@
+{
+  "v": 1,
+  "key": "jose",
+  "name": "Jose Torres",
+  "disburseLabel": "17 y 19 jun 2026",
+  "principal": 4000,
+  "fee": 0,
+  "received": 4000,
+  "disbursements": [
+    { "date": "2026-06-17", "amount": 3500, "note": "1a parte" },
+    { "date": "2026-06-19", "amount": 500, "note": "2a parte" }
+  ],
+  "plan": "periodic",
+  "payments": []
+}
