@@ -12,8 +12,6 @@
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
 .wrap{max-width:780px;margin:0 auto;padding:22px 16px 72px}
 a{color:var(--brand);text-decoration:none}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.back{font-size:14px;color:var(--muted)}
 h1{font-size:23px;margin:.2em 0}
 .sub{color:var(--muted);font-size:14px;margin:0 0 4px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
@@ -25,50 +23,19 @@ h1{font-size:23px;margin:.2em 0}
 .balance .v{font-size:34px;font-weight:800;color:var(--brand)}
 .progress{height:10px;background:#e9edf5;border-radius:999px;overflow:hidden;margin-top:12px}
 .progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),#51cf66);transition:width .3s}
-.plans{display:flex;gap:10px;flex-wrap:wrap}
-.plan{flex:1;min-width:190px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 13px;cursor:pointer;transition:.15s}
-.plan:hover{border-color:var(--brand2)}
-.plan.active{border-color:var(--brand);background:#f5f8ff;box-shadow:0 0 0 3px rgba(59,91,219,.12)}
-.plan .pt{font-weight:700;font-size:14.5px}
-.plan .pd{font-size:12.5px;color:var(--muted);margin-top:3px}
 table{width:100%;border-collapse:collapse;font-size:14.5px}
 th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.del{border:none;background:none;color:var(--red);cursor:pointer;font-size:15px;line-height:1;padding:4px 6px;border-radius:6px}
-.del:hover{background:var(--red-bg)}
-.form{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
-.field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:12px;color:var(--muted)}
-input{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
-.btn{font:inherit;font-weight:600;padding:9px 15px;border-radius:9px;border:1px solid var(--brand);background:var(--brand);color:#fff;cursor:pointer}
-.btn:hover{background:var(--brand2)}
-.btn.ghost{background:#fff;color:var(--muted);border-color:var(--line)}
-.btn.ghost:hover{background:#f6f8fc;color:var(--ink)}
-.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.warn{background:var(--red-bg);border:1px solid #ffc9c9;color:#a4262c;padding:10px 12px;border-radius:10px;font-size:13.5px;margin-bottom:14px}
-.muted{color:var(--muted)}.small{font-size:13px}
-.sched{font-size:13px;color:var(--muted);margin-top:10px}
+.small{font-size:13px}.muted{color:var(--muted)}
 .klabel{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.lcard{display:block;color:inherit}
-.lcard:hover{border-color:var(--brand);box-shadow:0 6px 20px rgba(59,91,219,.15)}
-.lcard .nm{font-size:18px;font-weight:700}
-.lcard .bal{font-size:30px;font-weight:800;color:var(--brand);margin-top:8px}
-.lcard .meta{font-size:13px;color:var(--muted);margin-top:5px}
-.pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:#eef2ff;color:var(--brand);margin-top:10px;font-weight:600}
-.share{background:#f5f8ff;border:1px dashed #b9c6f5}
-.linkbox{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.linkbox input{flex:1;min-width:220px;font-size:12.5px;color:var(--muted)}
-.ok{color:var(--green);font-weight:600;font-size:13px}
 .robanner{background:#eef2ff;border:1px solid #dfe6ff;color:var(--brand);padding:7px 13px;border-radius:999px;font-size:12.5px;font-weight:700;display:inline-block;margin-bottom:12px;letter-spacing:.02em}
-.badge{font-size:11px;font-weight:700;color:#a4262c;background:#fff0f0;border:1px solid #ffd8d8;padding:2px 8px;border-radius:999px}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.balance .v{font-size:29px}.cards{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.balance .v{font-size:29px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div id="err" style="display:none"><div class="card"><h1>Link incompleto</h1><p class="sub">El link parece cortado. Pide a quien te lo envio que te reenvie el link completo.</p></div></div>
+  <div id="err" style="display:none"><div class="card"><h1>Link incompleto</h1><p class="sub" id="errmsg">El link parece cortado. Pide a quien te lo envio que te reenvie el link completo.</p></div></div>
   <div id="app" style="display:none">
     <div class="robanner">👁️ Estado de tu prestamo · solo lectura</div>
     <h1 id="name"></h1>
@@ -97,7 +64,7 @@ input{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:9
         <tbody id="pays"></tbody>
       </table>
     </div>
-    <p class="small muted">Refleja los datos al momento en que se genero este link. Para cualquier duda, contacta a quien te presto.</p>
+    <p class="small muted">Refleja los datos guardados por quien te presto. Para cualquier duda, contactalo.</p>
   </div>
 </div>
 <script>
@@ -105,14 +72,10 @@ const PLANS={periodic:{rate:0.10,label:"Pagos periodicos (10%)"},lump:{rate:0.12
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const fmt=n=>"$"+Math.round(n).toLocaleString("en-US");
 const fmtD=iso=>{if(!iso)return"";const p=iso.split("-");return (+p[2])+" "+MES[(+p[1])-1]+" "+p[0];};
-const b64d=s=>decodeURIComponent(escape(atob(s)));
-function showErr(){document.getElementById("err").style.display="block";}
-try{
-  let raw=location.hash||"";
-  if(raw.indexOf("#d=")===0) raw=raw.slice(3); else if(raw.indexOf("#")===0) raw=raw.slice(1);
-  raw=decodeURIComponent(raw);
-  if(!raw) throw 0;
-  const d=JSON.parse(b64d(raw));
+function showErr(msg){if(msg)document.getElementById("errmsg").textContent=msg;document.getElementById("err").style.display="block";}
+function getParam(name){const m=new RegExp("[?&]"+name+"=([^&]+)").exec(location.search);return m?decodeURIComponent(m[1]):"";}
+
+function render(d){
   const P=PLANS[d.plan]||PLANS.periodic;
   const total=d.principal*(1+P.rate);
   const pays=(d.payments||[]).slice().sort((a,b)=>(a.date||"").localeCompare(b.date||""));
@@ -134,7 +97,19 @@ try{
   const body=document.getElementById("pays");let run=total;
   if(pays.length===0){body.innerHTML='<tr><td colspan="3" class="muted small" style="text-align:center;padding:16px">Sin pagos registrados aun.</td></tr>';}
   pays.forEach(p=>{run-=(+p.amount||0);const tr=document.createElement("tr");tr.innerHTML="<td>"+fmtD(p.date)+'</td><td class="num">'+fmt(p.amount)+'</td><td class="num">'+fmt(run)+"</td>";body.appendChild(tr);});
-}catch(e){showErr();}
+}
+
+async function load(){
+  const id=getParam("id").replace(/[^a-z0-9_-]/gi,"");
+  if(!id){showErr("Falta el identificador. El link debe terminar en ?id=nombre");return;}
+  try{
+    const res=await fetch("data/"+id+".json?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok) throw new Error("http "+res.status);
+    const d=await res.json();
+    render(d);
+  }catch(e){ showErr("No encontramos este prestamo. Revisa que el link este completo."); }
+}
+load();
 </script>
 </body>
 </html>
