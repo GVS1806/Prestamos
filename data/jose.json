@@ -11,5 +11,7 @@
     { "date": "2026-06-19", "amount": 500, "note": "2a parte" }
   ],
   "plan": "periodic",
-  "payments": []
+  "payments": [
+    { "date": "2026-07-28", "amount": 302 }
+  ]
 }
