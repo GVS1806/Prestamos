@@ -12,6 +12,7 @@
   ],
   "plan": "periodic",
   "payments": [
-    { "date": "2026-07-28", "amount": 302 }
+    { "date": "2026-07-28", "amount": 302 },
+    { "date": "2026-09-09", "amount": 350 }
   ]
 }
